@@ -7,7 +7,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebApplication1": {
+    "MyBookList": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
