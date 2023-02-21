@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication1.Pages
+namespace WebApplication1.Model
 {
     public class Book
     {
