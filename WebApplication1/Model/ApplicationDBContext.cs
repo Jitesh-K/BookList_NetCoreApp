@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApplication1.Model;
 
 namespace MyBookList.Model
 {
