@@ -23,16 +23,13 @@ namespace MyBookList.Pages.Books
 
         public async Task<IActionResult> OnPost()
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await _dbContext.Book.AddAsync(Book);
                 await _dbContext.SaveChangesAsync();
                 return RedirectToPage("Index");
             }
-            else
-            {
-                return Page();
-            }
+            return Page();
         }
     }
 }

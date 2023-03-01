@@ -19,5 +19,19 @@ namespace MyBookList.Pages.Books
         {
             Book = await _dbContext.Book.FindAsync(id);
         }
+
+        public async Task<IActionResult> OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                var bookFromDb = await _dbContext.Book.FindAsync(Book.Id);
+                bookFromDb.Name = Book.Name;
+                bookFromDb.Author = Book.Author;
+                bookFromDb.ISBN = Book.ISBN;
+                await _dbContext.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
+            return RedirectToPage();
+        }
     }
 }
