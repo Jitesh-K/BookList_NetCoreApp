@@ -39,11 +39,6 @@ namespace MyBookList.Pages.Books
                     await _dbContext.Book.AddAsync(Book);
                 else
                     _dbContext.Book.Update(Book);
-
-                var bookFromDb = await _dbContext.Book.FindAsync(Book.Id);
-                bookFromDb.Name = Book.Name;
-                bookFromDb.Author = Book.Author;
-                bookFromDb.ISBN = Book.ISBN;
                 await _dbContext.SaveChangesAsync();
                 return RedirectToPage("Index");
             }
