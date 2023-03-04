@@ -31,9 +31,9 @@ namespace MyBookList.Controllers
             {
                 _dbContext.Book.Remove(book);
                 await _dbContext.SaveChangesAsync();
-                return Json(new { success = true,message = "Error While Deleting." });
+                return Json(new { success = true,message = "Delete Successful." });
             }
-            return Json(new { success = false,message = "Delete Successful." });
+            return Json(new { success = false,message = "Error While Deleting." });
         }
     }
 }
