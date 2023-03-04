@@ -15,15 +15,31 @@ namespace MyBookList.Pages.Books
         }
         [BindProperty]
         public Book Book { get; set; }
-        public async Task OnGet(int id)
+        public async Task<IActionResult> OnGet(int? id)
         {
+            Book = new Book();
+            if(id == null)
+            {
+                //create
+                return Page();
+            }
+            //update
             Book = await _dbContext.Book.FindAsync(id);
+            if(Book == null)
+                return NotFound();
+            return Page();
+
         }
 
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
+                if (Book.Id == 0)
+                    await _dbContext.Book.AddAsync(Book);
+                else
+                    _dbContext.Book.Update(Book);
+
                 var bookFromDb = await _dbContext.Book.FindAsync(Book.Id);
                 bookFromDb.Name = Book.Name;
                 bookFromDb.Author = Book.Author;
