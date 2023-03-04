@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyBookList.Model;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyBookList.Controllers
 {
@@ -16,9 +18,9 @@ namespace MyBookList.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Json(new { data = _dbContext.Book.ToList() });
+            return Json(new { data = await _dbContext.Book.ToListAsync() });
         }
     }
 }
