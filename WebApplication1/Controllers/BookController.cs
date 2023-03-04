@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyBookList.Model;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyBookList.Controllers
 {
@@ -16,9 +18,22 @@ namespace MyBookList.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Json(new { data = _dbContext.Book.ToList() });
+            return Json(new { data = await _dbContext.Book.ToListAsync() });
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var book = await _dbContext.Book.FirstOrDefaultAsync(x => x.Id == id);
+            if(book != null)
+            {
+                _dbContext.Book.Remove(book);
+                await _dbContext.SaveChangesAsync();
+                return Json(new { success = true,message = "Delete Successful." });
+            }
+            return Json(new { success = false,message = "Error While Deleting." });
         }
     }
 }
