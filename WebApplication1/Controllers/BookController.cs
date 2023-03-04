@@ -22,5 +22,18 @@ namespace MyBookList.Controllers
         {
             return Json(new { data = await _dbContext.Book.ToListAsync() });
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var book = await _dbContext.Book.FirstOrDefaultAsync(x => x.Id == id);
+            if(book != null)
+            {
+                _dbContext.Book.Remove(book);
+                await _dbContext.SaveChangesAsync();
+                return Json(new { success = true,message = "Error While Deleting." });
+            }
+            return Json(new { success = false,message = "Delete Successful." });
+        }
     }
 }
