@@ -16,6 +16,7 @@
 ### 1.0 Tech Stack:
 1. .Net Core 3.1
 2. Sql Server
+  * Ef-core used for DB Operations
 3. External Libraries:
    * Jquery Datatables https://datatables.net/
    * SweetAlert https://sweetalert2.github.io/
