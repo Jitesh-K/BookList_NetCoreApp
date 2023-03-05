@@ -11,9 +11,6 @@ Min Requirements in system:
 Steps to run the application locally:
 1. Run command: git clone https://github.com/Jitesh-K/BookList_NetCoreApp.git 
 2. In Package manager console Type the following commands:
-   add-migration initial
-   update-database
+   * add-migration initial
+   * update-database
 3. Run the application
-
-
-Runtthe application using docker: TODO
